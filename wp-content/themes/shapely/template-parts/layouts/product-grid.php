@@ -1,0 +1,25 @@
+<?php
+/* Start the Loop */
+?>
+	<div class="row">
+		<?php
+		global $wp_query;
+		while ( have_posts() ) :
+			the_post();
+			$i = $wp_query->current_post + 1;
+			/*
+			 * Include the Post-Format-specific template for the content.
+			 * If you want to override this in a child theme, then include a file
+			 * called content-___.php (where ___ is the Post Format name) and that will be used instead.
+			 */
+			get_template_part( 'template-parts/product', 'card' );
+
+			if ( fmod( $i, (int) 4 ) == 0 && $i != (int) $wp_query->post_count ) {
+				echo '</div><div class="row rl-margin-top">';
+			} elseif ( $i == (int) $wp_query->post_count ) {
+				continue;
+			}
+		endwhile;
+		?>
+	</div>
+<?php

@@ -1,0 +1,9 @@
+.htaccess
+wp-config.php
+.DS_Store
+**/**/.DS_Store
+*.sql
+wp-config.php
+.DS-Store
+wp-snapshots/*
+wp-content/uploads/*

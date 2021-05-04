@@ -1,0 +1,98 @@
+<?php
+/**
+ * Template part for displaying posts.
+ *
+ * @link    https://codex.wordpress.org/Template_Hierarchy
+ *
+ * @package Shapely
+ */
+
+?>
+<!-- <div class="mdc-card"> -->
+<div class="col-md-3">
+	<article id="post-<?php the_ID(); ?>" <?php post_class( 'post-content post-grid-small rl-img-card mdc-card go-card ' ); ?> >
+		<header class="entry-header  nolist">
+			<?php
+			$category      = get_the_category();
+			$show_category = true;
+			if ( is_category() ) {
+				$show_category = get_theme_mod( 'show_category_on_category_page', 1 );
+			}
+			$image = '<img class="wp-post-image" alt="" src="' . get_template_directory_uri() . '/assets/images/placeholder.jpg" />';
+			if ( has_post_thumbnail() ) {
+				$image = get_the_post_thumbnail( get_the_ID(), 'shapely-grid' );
+			}
+			$allowed_tags = array(
+				'img'      => array(
+					'data-srcset' => true,
+					'data-src'    => true,
+					'srcset'      => true,
+					'sizes'       => true,
+					'src'         => true,
+					'class'       => true,
+					'alt'         => true,
+					'width'       => true,
+					'height'      => true,
+				),
+				'noscript' => array(),
+			);
+			?>
+
+			<a href="<?php echo esc_url( get_the_permalink() ); ?>" >
+				<div class ="rl-image"><?php echo wp_kses( $image, $allowed_tags ); ?></div>
+				<div class="rl-head"><?php echo wp_trim_words( get_the_title(), 9 ); ?></div>
+				<p class="rl-product-text">
+					<?php  echo wp_trim_words(get_field('description'),10);  ?>
+				</p>
+			</a>
+
+
+			<!-- <?php if ( isset( $category[0] ) && $show_category ) : ?>
+				<span class="shapely-category">
+					<a href="<?php echo esc_url( get_category_link( $category[0]->term_id ) ); ?>">
+						<?php echo esc_html( $category[0]->name ); ?>
+					</a>
+				</span>
+			<?php endif; ?> -->
+		</header><!-- .entry-header -->
+
+		 <!-- <div class="entry-content ">
+			<h2 class="post-title">
+				<a style="font-size: 20px; color: black;" href="<?php echo esc_url( get_the_permalink() ); ?>"><?php echo wp_trim_words( get_the_title(), 9 ); ?></a>
+			</h2>
+
+
+				<?php
+				shapely_posted_on_no_cat();
+				?>
+			</div>
+			<p class="rl-card-text">
+				<?php  echo wp_trim_words(get_field('description'),17);  ?>
+			</p>
+			<?php
+			the_content(
+				sprintf(
+
+							wp_kses(
+								__( 'Read more %s <span class="meta-nav">&rarr;</span>', 'shapely' ), array(
+									'span' => array(
+										'class' => array(),
+									),
+								)
+							),
+					the_title( '<span class="screen-reader-text">"', '"</span>', false )
+				)
+			);
+
+			wp_link_pages(
+				array(
+					'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'shapely' ),
+					'after'  => '</div>',
+				)
+			);
+			?>
+		</div> -->
+	</article><!-- #post-## -->
+
+</div>
+<?php
